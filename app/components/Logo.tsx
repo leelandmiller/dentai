@@ -1,11 +1,20 @@
 // app/components/Logo.tsx
-export default function Logo() {
+interface LogoProps {
+  className?: string
+}
+export default function Logo({ className = 'h-full w-full' }: LogoProps) {
   return (
-    <img 
-      src="/dentai.svg"
-      alt="Dentai Logo"
-      width={120} 
-      height={40}
-    />
+    <>
+      <img
+        src="/dentai.svg"
+        alt="Dentai Logo"
+        className={className + ' block dark:hidden'}
+      />
+      <img
+        src="/dentai-dark.svg"
+        alt="Dentai Logo"
+        className={className + ' hidden dark:block'}
+      />
+    </>
   )
 }
