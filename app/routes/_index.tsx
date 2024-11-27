@@ -1,7 +1,9 @@
 import type { MetaFunction } from '@remix-run/node'
+import { Link } from '@remix-run/react'
 
 import Logo from '~/components/Logo'
 import { Button } from '~/components/ui/button'
+import Navbar from '~/components/Navbar'
 
 export const meta: MetaFunction = () => {
   return [
@@ -13,6 +15,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <div className="flex flex-col min-h-screen">
+      <Navbar />
       {/* Hero Section */}
       <header className="bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-6 py-24">
@@ -26,7 +29,9 @@ export default function Index() {
               instantly. Save time, reduce errors, and focus more on patient
               care.
             </p>
-            <Button size="lg">Start Free Trial</Button>
+            <Link to="/register">
+              <Button size="lg">Sign Up Today</Button>
+            </Link>
           </div>
         </div>
       </header>
@@ -79,9 +84,9 @@ export default function Index() {
             Ready to Transform Your Practice?
           </h2>
           <div className="flex gap-4 justify-center">
-            <Button size="lg" variant="default">
-              Start Free Trial
-            </Button>
+            <Link to="/register">
+              <Button size="lg">Sign Up Today</Button>
+            </Link>
             <Button size="lg" variant="outline">
               Schedule Demo
             </Button>

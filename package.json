@@ -11,13 +11,14 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@firebase/auth": "^1.8.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@remix-run/node": "^2.15.0",
     "@remix-run/react": "^2.15.0",
     "@remix-run/serve": "^2.15.0",
-    "@supabase/supabase-js": "^2.46.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "firebase": "^11.0.2",
     "isbot": "^4.1.0",
     "lucide-react": "^0.461.0",
     "react": "^18.2.0",
