@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate, Link } from "@remix-run/react"
+import { useNavigate, Link, useSearchParams } from "@remix-run/react"
 import { Button } from "~/components/ui/button"
 import { Input } from "~/components/ui/input"
 import {
@@ -14,11 +14,14 @@ import { useToast } from "~/hooks/use-toast"
 import { Toaster } from "~/components/ui/toaster"
 
 export default function Register() {
+  const [searchParams] = useSearchParams()
+  const mode = searchParams.get("mode")
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(mode === "login")
   const { toast } = useToast()
   const navigate = useNavigate()
 
@@ -87,27 +90,35 @@ export default function Register() {
         </div>
 
         <form onSubmit={handleEmailAuth} className='mt-8 space-y-6'>
-          <div className='space-y-4'>
-            {!isLogin && (
+          <div className='space-y-4 min-h-[140px]'>
+            {" "}
+            {/* Add min-height to reserve space */}
+            <div
+              className={`transition-opacity duration-200 ${
+                !isLogin ? "opacity-100" : "opacity-0 h-0 overflow-hidden"
+              }`}
+            >
               <div className='flex space-x-4'>
                 <Input
                   type='text'
-                  required
+                  required={!isLogin}
                   placeholder='First Name'
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   className='flex-1'
+                  disabled={isLogin}
                 />
                 <Input
                   type='text'
-                  required
+                  required={!isLogin}
                   placeholder='Last Name'
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   className='flex-1'
+                  disabled={isLogin}
                 />
               </div>
-            )}
+            </div>
             <Input
               type='email'
               required
